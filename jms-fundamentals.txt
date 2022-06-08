@@ -1,0 +1,145 @@
+JMS
+what messaging is ? 
+why messaging?
+what jms is?
+why jms? 
+two styles - point to point
+           - pub sub 
+using both 1.x and 2.x
+
+jms message - headers , properties and payload (different types of payload) 
+
+p2p messaging - 
+pub sub messaging 
+
+====
+
+filter messages - message filtering in action - differnt types of operators 
+                  use operators in filter expressions 
+                  use jms headers to filter out messages 
+
+message guarantee - guarantee message delivery (acknowledge modes) 
+
+transactions - on producer and consumer side 
+
+java ee - application server (deploying messagnig service on server) 
+
+===========
+
+welcome to jms course 
+1. lectures 
+2. quiz 
+3. assignments - evaluate the knowledge gained in the section 
+4. hands on course 
+5. software setup - STS 
+                  - artemis 
+                  -jboss (later) to run applications on application server 
+------------
+
+hands on + assignments = expert 
+
+============
+
+
+what is messaging 
+1. exchanging data across applications 
+2. messaging system - app that sends, apps that receives , message itself, messaging server 
+(MOM - message oriented middleware) - takes incoming message and makes sure it gets sent to receiver
+3. MOMs - apache activemq websphere mq from ibm
+
+bank teller app--> sends a message to MOM --> MOM receives --> MOM will send the message to check processor 
+
+MOM decouples these 2 applications (the 2 apps dun need to know about each other) 
+
+why messaging ? 
+
+heterogenous integration --> because MOM decouples everything 
+
+each can be a microservice, for example 
+
+MOM exposes out an API for each of the platforms to send out messages 
+
+loosely coupled --> before messaging .. RMI were used.. which are tightly coupled
+
+messaging brings in loose coupling .. which is impt for microservice 
+
+apps dun need to know about each other 
+
+all the details are abstracted out -- loose coupling 
+
+MOM persists data , unlike webservices .. in webservices, messages can be lost 
+
+messaging reduces bottlenecks --> messaging uses async processing 
+
+JMS allows us to create async listeners 
+
+scalability --> we can easily scale apps by creating async listeners as load increases 
+
+flexibility and agility --> we can replace any servies with other new app -> 
+                            the other apps would not even know that we have replaced 1 
+                            particular app 
+
+what is jms? 
+1. we need an api to communicate with the messaging server to send messages and receive them
+2. before jms, we were using vendor specific api to do this 
+3. jms spec - set of rules for messaging servers - they implement jms standard
+            - api is for developers - the developer needs to learn only 1 API 
+
+4. app , using jms, can send messages to any vendor 
+5. jms2.0 is much different from jms1.2 
+jms is for messaging what jdbc is for databases
+=================
+
+jms
+point to point - message that is put on the queue is consumed only once - once consumed, msg is gone
+               - async fire and forget
+               - sync request/reply messaging
+               - greeting card --> greeting card is received by only 1 person
+pub sub -      - multiple apps consuming the same message 
+               - push model 
+               - 
+
+
+apache artemis - jms provider is server that implements jms specification 
+               - apache activemq artemis -> 
+               - java naming and directory interface (JNDI)
+
+
+download the completed projects 
+this is a complete hands on courses - we will create alot of jms courses
+download all the completed projects 
+work on projects from scratch 
+
+slides used in the course - resources of the lecture 
+
+
+assignment solutions --> assignment 1 messaging in action --> refer to completed solutions
+                         for those assignments 
+
+
+software setup 
+1. jdk 8 on ur machine  
+2. STS download and install  - configure spring tool suite - preferences -- jre - installed jres - point to jdk 
+3. install active mq artemis 
+   - bin folder artemis binaries -- go to this folder to create jms broker or provider 
+   - take note of bin folder which we will use later on 
+ 
+ C:\Users\nisch\Downloads\rangapulling\apache-artemis-2.6.4-bin\apache-artemis-2.6.4\bin
+
+navigate to this path from command line
+
+and then run artemis, and then on ur chosen path u will find all the files and folders necessary for JMS provider to work
+
+then in the new created path go to bin, open that path from command prompt and hit RUN
+
+and now jms client can be created using java 
+
+jms 1.x api
+1.  ConnectionFactory - this will be provided by active mq
+2.  Destination - eg a queue  - also by active mq 
+3.  Connection  once connectionfactory, get connection
+4.  Message  
+5.  Session - from connection, get session 
+6.  MessageProducer
+7.  MessageConsumer
+
